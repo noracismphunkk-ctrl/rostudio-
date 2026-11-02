@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#100914">
+<meta name="description" content="RoStudio — a creator workspace with a Halloween edge.">
+<title>RoStudio — Enter the Studio</title>
+<style>
+:root{--bg:#100914;--panel:#1b1020;--panel2:#24142a;--line:#482b4d;--ink:#fff7f0;--muted:#bca9bd;--orange:#ff8b38;--gold:#ffc16b;--purple:#b66cff;--green:#b6ed9b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 14% 12%,#57254b66,transparent 34%),radial-gradient(ellipse at 88% 42%,#652b1d44,transparent 34%),linear-gradient(180deg,#100914,#160c1c 55%,#100914)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}a{color:inherit}.shell{width:min(1120px,calc(100% - 42px));margin:auto}
+header{height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff16;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:850;letter-spacing:-1px}.brand img{width:42px;height:42px;object-fit:contain;border-radius:13px;filter:drop-shadow(0 0 15px #ff8b3866)}
+.brand span{background:linear-gradient(100deg,#fff 15%,#ffbd78 70%,#c18aff);background-clip:text;color:transparent}
+nav{display:flex;gap:5px;padding:5px;background:#ffffff08;border:1px solid #ffffff18;border-radius:15px;backdrop-filter:blur(15px)}
+.tab{border:0;background:transparent;color:var(--muted);padding:10px 17px;border-radius:10px;font-size:12px;font-weight:750;transition:.2s}.tab:hover{color:white;background:#ffffff0c}.tab[aria-selected=true]{background:linear-gradient(120deg,var(--orange),var(--gold));color:#251226;box-shadow:0 5px 20px #ff8b3833}
+main{min-height:calc(100vh - 155px)}.view{padding:66px 0 78px;animation:appear .45s ease both}.view[hidden]{display:none}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:42px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font:10px ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;padding:9px 12px;border:1px solid #ffb65a44;border-radius:30px;background:#ff9b2b0d}.spark{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange);animation:pulse 1.8s infinite}
+h1{font-size:clamp(54px,8vw,88px);line-height:.94;letter-spacing:-5px;margin:25px 0 20px;font-weight:900}.gradient{background:linear-gradient(100deg,#fff5e9 5%,#ffae61 48%,#bd80ff 90%);background-clip:text;color:transparent}
+.lead{max-width:470px;color:var(--muted);font-size:15px;line-height:1.8}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:28px}
+.primary,.secondary{border:0;border-radius:12px;padding:15px 20px;font-size:13px;font-weight:850;transition:transform .2s,box-shadow .2s}.primary{color:#251226;background:linear-gradient(110deg,var(--orange),var(--gold));box-shadow:0 8px 28px #ff8b3833}.primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px #ff8b3855}.secondary{background:#ffffff0b;border:1px solid #ffffff20;color:var(--ink)}.secondary:hover{transform:translateY(-3px);background:#ffffff14}
+.hero-art{height:390px;position:relative;display:grid;place-items:center;border:1px solid #ffffff1b;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 50%,#6c2d4538,transparent 55%),linear-gradient(145deg,#29142f,#160f1d 70%);box-shadow:inset 0 0 60px #0007,0 25px 70px #0005}
+.hero-art:before,.hero-art:after{content:"";position:absolute;border:1px solid #ffae6144;border-radius:50%;width:260px;height:260px;animation:orbit 22s linear infinite}.hero-art:after{width:330px;height:330px;border-color:#b66cff33;animation-direction:reverse}
+.orbit-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px var(--orange);top:16%;left:25%}
+.pumpkin{font-size:132px;z-index:1;filter:drop-shadow(0 18px 24px #ff7b2944);animation:float 4s ease-in-out infinite}.art-caption{position:absolute;bottom:20px;left:22px;right:22px;display:flex;justify-content:space-between;color:#c9afc9;font:9px ui-monospace,monospace;letter-spacing:1.4px}
+.badge{position:absolute;top:20px;right:20px;border:1px solid #ffffff20;background:#120b1dbb;backdrop-filter:blur(12px);padding:8px 11px;border-radius:30px;color:var(--green);font:9px ui-monospace,monospace;letter-spacing:1px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:25px}.stat,.feature,.story,.credit{border:1px solid #ffffff16;background:linear-gradient(145deg,#ffffff0b,#ffffff04);border-radius:16px;padding:19px;box-shadow:0 12px 35px #0002}.stat strong{display:block;font-size:21px;color:var(--gold);margin-bottom:5px}.stat span{font:10px ui-monospace,monospace;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.section-top{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:28px}.section-top h1{font-size:clamp(48px,7vw,72px);margin:18px 0 0}.section-top p{max-width:330px;color:var(--muted);line-height:1.7;font-size:13px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:34px}.feature .num{font:10px ui-monospace,monospace;color:var(--orange)}.feature h3{font-size:16px;margin:14px 0 8px}.feature p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+.story{padding:30px;max-width:850px;background:linear-gradient(135deg,#28172e,#19101f);position:relative;overflow:hidden}.story:after{content:"🎃";position:absolute;font-size:125px;right:24px;bottom:-24px;opacity:.08;transform:rotate(-15deg)}.story .date{color:var(--orange);font:11px ui-monospace,monospace;letter-spacing:1.5px}.story h2{font-size:25px;letter-spacing:-.8px;margin:16px 0}.story p{max-width:680px;color:#d2c2d4;line-height:1.9;font-size:14px;position:relative;z-index:1}.credit{margin-top:15px;max-width:850px;display:flex;align-items:center;gap:15px}.credit img{width:46px;height:46px;object-fit:contain;border-radius:13px}.credit strong{display:block}.credit small{display:block;color:var(--muted);margin-top:5px}
+.codebox{max-width:850px;margin-top:28px;border:1px solid #ffffff20;border-radius:18px;overflow:hidden;background:#0c0911;box-shadow:0 20px 60px #0005}.codebar{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;background:#ffffff08;border-bottom:1px solid #ffffff14;color:var(--muted);font:10px ui-monospace,monospace;letter-spacing:1px}.lights{display:flex;gap:6px}.lights i{width:8px;height:8px;border-radius:50%;background:#ff705e}.lights i:nth-child(2){background:#ffc15c}.lights i:nth-child(3){background:#83d88c}
+.codecontent{padding:25px 22px;overflow:auto}.codecontent code{white-space:pre;font:13px/1.8 ui-monospace,monospace;color:#ffd19b}.codecontent code span{color:#c18aff}.copy{border:1px solid #ffffff22;background:#ffffff0d;color:white;padding:9px 13px;border-radius:8px;font-size:11px;font-weight:700}.copy:hover{background:#ffffff18}
+footer{border-top:1px solid #ffffff16;padding:22px 0 27px;display:flex;justify-content:space-between;gap:15px;color:#a993ae;font:10px ui-monospace,monospace;letter-spacing:.5px}
+#embers{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.ember{position:absolute;bottom:-12px;width:3px;height:3px;border-radius:50%;background:#ff9b4d;box-shadow:0 0 12px #ff7b38;opacity:0;animation:rise linear infinite}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-13px) rotate(4deg)}}@keyframes pulse{50%{opacity:.4;transform:scale(.7)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-110vh) translateX(30px);opacity:0}}
+@media(max-width:700px){.shell{width:calc(100% - 30px)}header{height:auto;min-height:78px;flex-wrap:wrap;padding:14px 0}.brand{font-size:20px}nav{width:100%;justify-content:center}.tab{flex:1;padding:10px 8px}.view{padding:43px 0 55px}.hero{grid-template-columns:1fr;gap:28px}h1{font-size:58px;letter-spacing:-3.5px}.hero-art{height:260px}.pumpkin{font-size:100px}.stats,.feature-grid{grid-template-columns:1fr}.section-top{display:block}.section-top p{margin-top:18px}.story{padding:22px}.story:after{font-size:90px}.credit{align-items:flex-start}footer{flex-wrap:wrap}.codecontent{padding:20px 15px}.codecontent code{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="embers" aria-hidden="true"></div>
+<div class="shell">
+<header>
+  <div class="brand"><img src="./logo.png" alt="RoStudio logo"><span>RoStudio</span></div>
+  <nav aria-label="Website sections">
+    <button class="tab" data-view="main" aria-selected="true">Home</button>
+    <button class="tab" data-view="credits" aria-selected="false">Credits</button>
+    <button class="tab" data-view="script" aria-selected="false">Get Script</button>
+  </nav>
+</header>
+<main>
+<section class="view" id="main">
+  <div class="hero">
+    <div>
+      <div class="eyebrow"><i class="spark"></i> Halloween build · 2026</div>
+      <h1>Make it.<br><span class="gradient">Break limits.</span></h1>
+      <p class="lead">Welcome to RoStudio. A refreshed Studio Lite experience built for creators who want more control, more creativity, and a little Halloween energy.</p>
+      <div class="actions"><button class="primary" data-go="script">Launch RoStudio <span>↗</span></button><button class="secondary" data-go="credits">Meet the creator</button></div>
+      <div class="stats"><div class="stat"><strong>01</strong><span>Creator</span></div><div class="stat"><strong>2026</strong><span>Started</span></div><div class="stat"><strong>∞</strong><span>Ideas</span></div></div>
+    </div>
+    <div class="hero-art"><span class="badge">✦ SPOOKY SEASON</span><i class="orbit-dot"></i><div class="pumpkin">🎃</div><div class="art-caption"><span>ROSTUDIO / STUDIO LITE</span><span>EST. 2026</span></div></div>
+  </div>
+  <div class="feature-grid">
+    <article class="feature"><span class="num">01 / INTERFACE</span><h3>A fresh workspace</h3><p>A cleaner look with a distinct identity and a smoother experience.</p></article>
+    <article class="feature"><span class="num">02 / CREATIVITY</span><h3>Made for creators</h3><p>Tools and ideas designed around making things inside Studio Lite.</p></article>
+    <article class="feature"><span class="num">03 / WHAT'S NEXT</span><h3>More is coming</h3><p>RoStudio is growing. Keep an eye out for future updates.</p></article>
+  </div>
+</section>
+<section class="view" id="credits" hidden>
+  <div class="section-top"><div><div class="eyebrow"><i class="spark"></i> Behind the project</div><h1>The story<br><span class="gradient">of RoStudio.</span></h1></div><p>Every project starts with an idea. This is where RoStudio began.</p></div>
+  <article class="story">
+    <div class="date">THE BEGINNING · OCTOBER 2026</div>
+    <h2>One month ago, RoStudio began.</h2>
+    <p>RoStudio was created by Mimic about one month ago, inspired by CoStudio. The idea was to take inspiration from CoStudio and build a project with its own name, identity, and direction. Since then, RoStudio has been shaped into a creator-focused experience for Studio Lite. This is only the beginning, with more ideas and features still ahead.</p>
+  </article>
+  <div class="credit"><img src="./logo.png" alt=""><div><strong>Made by Mimic</strong><small>Creator and developer of RoStudio</small></div></div>
+</section>
+<section class="view" id="script" hidden>
+  <div class="section-top"><div><div class="eyebrow"><i class="spark"></i> One line to get started</div><h1>Your next<br><span class="gradient">session.</span></h1></div><p>Copy the loader below and paste it into your supported executor.</p></div>
+  <div class="codebox"><div class="codebar"><span><i class="lights"><i></i><i></i><i></i></i> &nbsp; ROSTUDIO.LUA</span><button class="copy" id="copy">COPY SCRIPT</button></div><div class="codecontent"><code><span>loadstring</span>(game:HttpGet("https://rostudio-rbxl.netlify.app"))()</code></div><div class="codebar"><span>LUA · REMOTE LOADER</span><span id="status">READY</span></div></div>
+</section>
+</main>
+<footer><span>© 2026 ROSTUDIO · MADE BY MIMIC</span><span>KEEP CREATING. STAY SPOOKY. 🎃</span></footer>
+</div>
+<script>
+const tabs=[...document.querySelectorAll(".tab")],views=[...document.querySelectorAll(".view")];
+function show(id){views.forEach(v=>v.hidden=v.id!==id);tabs.forEach(t=>t.setAttribute("aria-selected",String(t.dataset.view===id)));window.scrollTo({top:0,behavior:"smooth"});}
+tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.view)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
+document.getElementById("copy").addEventListener("click",async()=>{const s='loadstring(game:HttpGet("https://rostudio-rbxl.netlify.app"))()';try{await navigator.clipboard.writeText(s);document.getElementById("status").textContent="COPIED!";document.getElementById("copy").textContent="COPIED";}catch{document.getElementById("status").textContent="COPY MANUALLY";}});
+const holder=document.getElementById("embers");for(let i=0;i<24;i++){const e=document.createElement("i");e.className="ember";e.style.left=Math.random()*100+"%";e.style.animationDuration=7+Math.random()*10+"s";e.style.animationDelay=Math.random()*-15+"s";e.style.transform="scale("+(0.6+Math.random()*1.5)+")";holder.appendChild(e);}
+</script>
+</body>
+</html>
